@@ -1,3 +1,13 @@
-<h1>
-  {{title}}
-</h1>
+<div id="viewPort">
+<header *ngIf="user">
+  <a routerLink="/">Home</a>
+  <a routerLink="/contact">Contact</a>
+  <a routerLink="/about">About</a>
+</header>
+<main>
+    <router-outlet></router-outlet>
+</main>
+<footer>
+   This is the footer...
+</footer>
+</div>

@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang = "en">
+
+<head>
+    <meta charset = "UTF-8">
+    <title>FlexBox Layout</title>
+    <style>
+        body  {
+            margin: 0px;
+            display: flex;
+            min-height: 100vh;
+            flex-direction: column;
+        }
+
+        main {
+            flex : 1;
+            text-align: center;
+            vertical-align: middle;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        #logo {
+            max-width: 30%;
+        }
+
+
+    </style>
+</head>
+
+<body class="theSite">
+<header>Header Goes Here</header>
+<main>
+    <div id="logo">Main Content</div>
+</main>
+<footer>This is the footer</footer>
+</body>
+
+</html>
