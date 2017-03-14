@@ -20,9 +20,14 @@ import { PageAboutComponent } from './page-about/page-about.component';
 import { PageContactComponent } from './page-contact/page-contact.component';
 import { PageAdminComponent } from './page-admin/page-admin.component';
 import { PageSchoolComponent } from './page-school/page-school.component';
+import { PageRegisterComponent} from './page-register/page-register.component';
 import { PageQuizComponent } from './page-quiz/page-quiz.component';
 import { ClassLinkComponent } from './class-link/class-link.component';
 import { PageLoginComponent } from './page-login/page-login.component'
+import {UserService} from "./service-user/user.service";
+import { PageScoresComponent } from './page-scores/page-scores.component';
+import { StarLevelTypeComponent } from './star-level-type/star-level-type.component';
+
 
 
 
@@ -30,6 +35,7 @@ const appRoutes: Routes = [
   { path: 'login', component : PageLoginComponent },
   { path : 'school/:schoolId', component: PageSchoolComponent },
   { path : 'quiz/:quizId', component: PageQuizComponent},
+  { path : 'register', component : PageRegisterComponent},
   { path : 'about', component: PageAboutComponent },
   { path : 'contact',      component: PageContactComponent },
   { path: 'home', component: PageHomeComponent, data: [{ title: 'Maths All Stars' }]
@@ -58,7 +64,10 @@ const appRoutes: Routes = [
     PageSchoolComponent,
     PageQuizComponent,
     ClassLinkComponent,
-    PageLoginComponent
+    PageLoginComponent,
+    PageScoresComponent,
+    StarLevelTypeComponent,
+    PageRegisterComponent
   ],
   imports: [
     RouterModule.forRoot(appRoutes),
@@ -67,7 +76,7 @@ const appRoutes: Routes = [
     HttpModule,
     MaterialModule
   ],
-  providers: [LoggerService],
+  providers: [LoggerService, UserService],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

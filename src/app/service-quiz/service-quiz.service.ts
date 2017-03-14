@@ -27,7 +27,7 @@ export class QuizService {
   private extractData(res: Response) {
 
     let data = res.json();
-    console.log(`QuizService::extractData received:`, data)
+  //  console.log(`QuizService::extractData received:`, data)
     return data || { };
   }
 
