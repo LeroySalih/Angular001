@@ -5,7 +5,7 @@ import { HttpModule } from '@angular/http';
 import { RouterModule, Routes } from '@angular/router';
 import { AppComponent } from './app.component';
 
-import { MaterialModule } from '@angular/material';
+import {MaterialModule, MdDialogModule} from '@angular/material';
 import 'hammerjs';
 
 import { HelloWorldComponent } from './hello-world/hello-world.component';
@@ -19,7 +19,7 @@ import { PageHomeComponent } from './page-home/page-home.component';
 import { PageAboutComponent } from './page-about/page-about.component';
 import { PageContactComponent } from './page-contact/page-contact.component';
 import { PageAdminComponent } from './page-admin/page-admin.component';
-import { PageSchoolComponent } from './page-school/page-school.component';
+import {PageSchoolComponent} from './page-school/page-school.component';
 import { PageRegisterComponent} from './page-register/page-register.component';
 import { PageQuizComponent } from './page-quiz/page-quiz.component';
 import { ClassLinkComponent } from './class-link/class-link.component';
@@ -27,6 +27,7 @@ import { PageLoginComponent } from './page-login/page-login.component'
 import {UserService} from "./service-user/user.service";
 import { PageScoresComponent } from './page-scores/page-scores.component';
 import { StarLevelTypeComponent } from './star-level-type/star-level-type.component';
+import { TimerComponent } from './timer/timer.component';
 
 
 
@@ -67,14 +68,20 @@ const appRoutes: Routes = [
     PageLoginComponent,
     PageScoresComponent,
     StarLevelTypeComponent,
-    PageRegisterComponent
+    PageRegisterComponent,
+    TimerComponent,
+
+
+
   ],
+
   imports: [
     RouterModule.forRoot(appRoutes),
     BrowserModule,
     FormsModule,
     HttpModule,
-    MaterialModule
+    MaterialModule,
+    MdDialogModule,
   ],
   providers: [LoggerService, UserService],
   bootstrap: [AppComponent]

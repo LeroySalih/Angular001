@@ -1,0 +1,15 @@
+<form>
+  <h1>Add a user</h1>
+  <div class="field">
+    <label for="title">Title:</label>
+    <input name="title" #newtitle> <!-- changed -->
+  </div>
+  <div class="field">
+    <label for="link">Link:</label>
+    <input name="link" #newlink> <!-- changed -->
+  </div>
+  <button (click)="addArticle(newtitle, newlink)"
+          class="ui positive right floated button">
+    Submit link
+  </button>
+</form>

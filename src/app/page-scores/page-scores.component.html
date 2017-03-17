@@ -1,0 +1,31 @@
+
+<form #f="ngForm" (ngSubmit)="saveForm(f.value)">
+  <div>
+    <br/>
+    <md-select placeholder="Pupil" name="pupilId" ngModel>
+      <md-option *ngFor="let pupil of this.pupils" value="{{pupil._id}}">{{pupil.name}}</md-option>
+    </md-select>
+    <md-select placeholder="level" name="level" ngModel>
+      <md-option value="1">1 Star</md-option>
+      <md-option value="2">2 Star</md-option>
+      <md-option value="3">3 Star</md-option>
+      <md-option value="4">4 Star</md-option>
+      <md-option value="5">5 Star</md-option>
+    </md-select>
+    <md-select placeholder="type" name="type" ngModel>
+      <md-option value="addition">Addition</md-option>
+      <md-option value="subtraction">Subtraction</md-option>
+      <md-option value="multiplication">Multiplication</md-option>
+      <md-option value="division">Division</md-option>
+    </md-select>
+    <md-select placeholder="score" name="score" ngModel>
+      <md-option value="1">1</md-option>
+      <md-option value="2">2</md-option>
+      <md-option value="3">3</md-option>
+      <md-option value="4">4</md-option>
+      <md-option value="5">5</md-option>
+    </md-select>
+    <button type="submit" md-raised-button >Save</button>
+  </div>
+</form>
+

@@ -1,0 +1,31 @@
+@font-face{
+  font-family: 'DigitalFont';
+  src: url('/fonts/digital-7.ttf') format('truetype')
+}
+
+.countdownTimer {
+  font-family: 'DigitalFont';
+  font-size: large;
+}
+
+.starLevel {
+  display : flex;
+  flex-direction: row;
+  padding  :1px;
+  margin:5px;
+  min-width:1200px;
+}
+
+.starLevelIndicator {
+  min-width : 40px;
+  background-color: #00acc1;
+  padding:1px;
+}
+
+
+.starLevelQuestions {
+  padding:20px;
+  width:100%
+}
+
+

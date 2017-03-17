@@ -1,0 +1,25 @@
+<div id="login_container" >
+  <img id="login_logo" src="/img/MathAllStars_Logo.png"/>
+  <div id="loginForm">
+    <form>
+      <div>
+        <md-input-container class="example-full-width">
+          <input mdInput placeholder="Email">
+        </md-input-container>
+      </div>
+      <div>
+        <md-input-container class="example-full-width">
+          <input type="password" mdInput placeholder="Password">
+        </md-input-container>
+      </div>
+      <div>
+        <md-slide-toggle [color]="'primary'">Remember Me</md-slide-toggle>
+      </div>
+      <div>
+        <button md-button (click)="handleLogin(); false">Login</button>
+        <button md-button (click)="handleRegister(); false">Register</button>
+      </div>
+    </form>
+
+  </div>
+</div>

@@ -1,0 +1,22 @@
+<md-card class="class">
+  <form #f="ngForm" (ngSubmit)="handleCreateQuiz(f.value)">
+  <md-card-header>
+    <md-card-title>{{class.name}}</md-card-title>
+    <md-card-subtitle>Last Played:</md-card-subtitle>
+  </md-card-header>
+  <md-card-content>
+    <md-select placeholder="level" name="level" ngModel>
+      <md-option [value]="4">Level 4</md-option>
+      <md-option [value]="5">Level 5</md-option>
+      <md-option [value]="6">Level 6</md-option>
+    </md-select>
+    <md-slide-toggle value="true" name="addition" ngModel>Addition</md-slide-toggle>
+    <md-slide-toggle value="true" name="subtraction" ngModel>Subtraction</md-slide-toggle>
+    <md-slide-toggle value="true" name="multiplication" ngModel>Multiplication</md-slide-toggle>
+    <md-slide-toggle value="true" name="division" ngModel>Division</md-slide-toggle>
+  </md-card-content>
+  <md-card-actions>
+    <button md-raised-button (click)="handleCreateQuiz(f.value);false;" type="button">Create Quiz</button>
+  </md-card-actions>
+  </form>
+</md-card>

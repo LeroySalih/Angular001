@@ -1,0 +1,27 @@
+.starLevelType {
+  display: flex;
+  flex-direction: row;
+}
+
+.questionType {
+  min-width : 25px;
+  font-weight: 400;
+  font-size: large;
+}
+
+.questions{
+  display:flex;
+  flex-direction: row;
+  width:100%;
+  justify-content:space-around;
+  padding:5px;
+}
+.question {
+  flex-grow: 1;
+  font-size  :large;
+
+}
+.answer {
+  color: red;
+  text-decoration: underline;
+}

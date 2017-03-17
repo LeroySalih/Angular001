@@ -1,0 +1,11 @@
+<div>
+  Log On Page Goes Here {{pageTitle}}
+  <ul>
+    <a *ngFor="let school of schools"
+       [routerLink]="['/school', school._id]">
+      {{ school.name }}
+    </a>
+
+  </ul>
+  <button md-button>Testing</button>
+</div>

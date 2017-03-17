@@ -1,0 +1,17 @@
+<div>
+
+  <div *ngIf="school">
+    <h2>Quizzes for : {{school.name}}</h2>
+    <div id="classList">
+      <app-class-link *ngFor="let class of school.classes"
+                      [class]="class"
+                      (onCreateQuiz)="onCreateQuiz($event)">
+
+      </app-class-link>
+    </div>
+  </div>
+
+  <div *ngIf="!school">
+    no school found
+  </div>
+</div>

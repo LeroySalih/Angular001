@@ -1,5 +1,6 @@
 import { Injectable } from '@angular/core';
 import { Http, Response }          from '@angular/http';
+import {CreateMsg} from "../class-link/class-link.component";
 
 @Injectable()
 export class QuizService {
@@ -18,9 +19,10 @@ export class QuizService {
     return this.http.get(`${this.quizUrl}/${quizId}`).map(this.extractData)
   }
 
-  createQuiz(classId:string) {
+  createQuiz(createMsg:CreateMsg) {
+    console.log('SeviceQuiz', createMsg)
     //noinspection TypeScriptValidateTypes
-    return this.http.post(this.quizUrl,{classId:classId})
+    return this.http.post(this.quizUrl,createMsg)
       .map(this.extractData)
   }
 

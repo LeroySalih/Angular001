@@ -1,0 +1,9 @@
+@font-face{
+  font-family: 'DigitalFont';
+  src: url('/fonts/digital-7.ttf') format('truetype')
+}
+
+.countdownTimer {
+  font-family: 'DigitalFont';
+  font-size: large;
+}

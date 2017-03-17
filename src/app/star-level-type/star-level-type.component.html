@@ -1,0 +1,14 @@
+<div class="starLevelType" *ngIf="this.questions.length">
+  <div class="questionType">{{this.type}}</div>
+
+  <div class="questions">
+    <div *ngFor="let question of this.questions" class="question">
+      <div > {{question.question}}
+        <span [@showAnswers]="this.showAnswers" class="answer">{{question.answer}}</span>
+      </div>
+    </div>
+  </div>
+
+
+
+</div>
