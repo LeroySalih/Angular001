@@ -4,12 +4,13 @@
   "license": "MIT",
   "scripts": {
     "ng": "ng",
-    "start": "cp -R assets/* dist && nodemon ./server/www.js",
+    "start": "nodemon ./server/www.js",
     "build": "ng build && echo 'moving assests' && cp -R assets/* dist && echo 'done'",
     "test": "ng test",
     "lint": "ng lint",
     "e2e": "ng e2e",
-    "postinstall": "ng build"
+    "postinstall": "ng build && cp -R assets/* dist",
+    "deploy" : "git add . && git commit -m 'Deploy Build' && git push heroku master"
   },
   "private": true,
   "dependencies": {
