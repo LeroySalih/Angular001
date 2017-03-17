@@ -11,6 +11,20 @@ const assert = require ('assert');
 
 const MongoClient = require ('mongodb').MongoClient
 
+console.log('reading environment var : ', process.env.NODE_HOSTED);
+
+var config = {};
+
+if (process.env.NODE_HOSTED) {
+  config = require("./config").hosted
+  config.isHosted = true;
+} else {
+  config = require("./config").local
+  config.isHosted = false;
+}
+
+console.log(`Loading Config ${config.name}`);
+
 
 /**
  * Get port from environment and store in Express.
@@ -30,12 +44,15 @@ var server = http.createServer(app);
  */
 var db;
 
-MongoClient.connect('mongodb://localhost:27017/SchoolServer',
+
+var mongoURL = (config.isHosted) ? process.env.MONGODB_URI : config.mongoDbUrl;
+
+MongoClient.connect(mongoURL,
     (err, database) => {
 
       assert (database != null, "Error Connecting to MongoDB")
       console.log("Connected to MongoDB");
-      
+
       app.set('db', database);
 
       server.listen(port);
