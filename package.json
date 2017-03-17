@@ -5,7 +5,7 @@
   "scripts": {
     "ng": "ng",
     "start": "nodemon ./server/www.js",
-    "build": "ng build",
+    "build": "ng build && mv /img ./dist && mv /fonts /dist",
     "test": "ng test",
     "lint": "ng lint",
     "e2e": "ng e2e",
