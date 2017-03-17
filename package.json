@@ -4,7 +4,7 @@
   "license": "MIT",
   "scripts": {
     "ng": "ng",
-    "start": "p -R assets/* dist && nodemon ./server/www.js",
+    "start": "cp -R assets/* dist && nodemon ./server/www.js",
     "build": "ng build && echo 'moving assests' && cp -R assets/* dist && echo 'done'",
     "test": "ng test",
     "lint": "ng lint",
