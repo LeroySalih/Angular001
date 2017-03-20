@@ -43,6 +43,13 @@ router.post('/pupil/:pupilId/score', function(req, res, next){
 
     score.created = Date.now();
 
+    var objUpdate = {};
+    if (score.score == "5"){
+      objUpdate[score.type] = score.level;
+      score[score.type] = score.level;
+    }
+
+    // Push the score on to the pupil record.
     db.collection('pupils').updateOne(
         {_id:ObjectId(score.pupilId)},
         {$push : {
@@ -50,23 +57,20 @@ router.post('/pupil/:pupilId/score', function(req, res, next){
                    $each : [score],
                    $position : 0
                 }
-            }
+            },
+          $set : objUpdate
         }
+    ).then (
+      (result) => {res.json(score)}
     )
 
-    var objUpdate = {};
-    objUpdate[score.type] = score.score;
 
-    console.log(objUpdate);
-    db.collection('pupils').updateOne(
-        {_id:ObjectId(score.pupilId)},
-        {$set : objUpdate}
-    );
+
 
 })
 
 router.get('/pupil/:pupilId/score', function(req, res, next){
-  
+
     res.json({msg:"GET NOT SUPPORTED"})
 
 })

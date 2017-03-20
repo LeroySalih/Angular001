@@ -16,10 +16,10 @@ console.log('reading environment var : ', process.env.NODE_HOSTED);
 var config = {};
 
 if (process.env.NODE_HOSTED) {
-  config = require("./config").hosted
+  config = require("../config").hosted
   config.isHosted = true;
 } else {
-  config = require("./config").local
+  config = require("../config").local
   config.isHosted = false;
 }
 

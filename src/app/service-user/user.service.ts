@@ -10,24 +10,34 @@ import 'rxjs/add/operator/catch';
 import 'rxjs/add/operator/map';
 import {User} from '../models/user'
 
+import {ServerLib} from '../serverLib';
+
 @Injectable()
 export class UserService {
 
   public currentUser:BehaviorSubject<User> = new BehaviorSubject<User>(null);
 
-  constructor() {
+  constructor(public http: Http) {
 
   }
 
   loginUser (email:string, password:string){
-    this.currentUser.next({
-      _id:'qwerty1234',
-      email:email,
-      isTeacher:true,
-      classId : '',
-      schoolId:"58be6aab2f1a4a38daa4ca52"
-    })
+
+
+      console.log(window.location);
+      return this.http.post(ServerLib.getServerAddress("/users/login"),{email, password})
+                      .subscribe((result:Response) => {
+
+                        console.log('Users Service login:', result.json());
+
+                        this.currentUser.next(result.json())
+
+                      })
+
+
   }
-  
+
+
+
 
 }

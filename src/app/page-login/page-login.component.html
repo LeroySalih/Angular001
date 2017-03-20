@@ -1,23 +1,23 @@
 <div id="login_container" >
   <img id="login_logo" src="/img/MathAllStars_Logo.png"/>
   <div id="loginForm">
-    <form>
+    <form #f="ngForm" (ngSubmit)="handleLogin(f.value)">
       <div>
         <md-input-container class="example-full-width">
-          <input mdInput placeholder="Email">
+          <input mdInput placeholder="Email" name="email" ngModel>
         </md-input-container>
       </div>
       <div>
         <md-input-container class="example-full-width">
-          <input type="password" mdInput placeholder="Password">
+          <input type="password" mdInput placeholder="Password" name="password" ngModel>
         </md-input-container>
       </div>
       <div>
         <md-slide-toggle [color]="'primary'">Remember Me</md-slide-toggle>
       </div>
       <div>
-        <button md-button (click)="handleLogin(); false">Login</button>
-        <button md-button (click)="handleRegister(); false">Register</button>
+        <button md-button (click)="handleLogin(f.value); false">Login</button>
+        <button md-button (click)="handleRegister(f.value); false">Register</button>
       </div>
     </form>
 

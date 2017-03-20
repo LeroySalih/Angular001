@@ -28,6 +28,7 @@ import {UserService} from "./service-user/user.service";
 import { PageScoresComponent } from './page-scores/page-scores.component';
 import { StarLevelTypeComponent } from './star-level-type/star-level-type.component';
 import { TimerComponent } from './timer/timer.component';
+import { PageSchoolAdminComponent } from './page-school-admin/page-school-admin.component';
 
 
 
@@ -36,9 +37,11 @@ const appRoutes: Routes = [
   { path: 'login', component : PageLoginComponent },
   { path : 'school/:schoolId', component: PageSchoolComponent },
   { path : 'quiz/:quizId', component: PageQuizComponent},
+  { path : 'scores/:quizId', component : PageScoresComponent},
   { path : 'register', component : PageRegisterComponent},
   { path : 'about', component: PageAboutComponent },
   { path : 'contact',      component: PageContactComponent },
+  { path : 'schoolAdmin/:schoolId', component : PageSchoolAdminComponent},
   { path: 'home', component: PageHomeComponent, data: [{ title: 'Maths All Stars' }]
   },
   { path: '',
@@ -70,6 +73,7 @@ const appRoutes: Routes = [
     StarLevelTypeComponent,
     PageRegisterComponent,
     TimerComponent,
+    PageSchoolAdminComponent,
 
 
 

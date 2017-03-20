@@ -112,6 +112,10 @@ export class PageQuizComponent implements OnInit, OnDestroy {
     this.router.navigate(['/school', this.schoolId])
   }
 
+  handleGoToScores(){
+    this.router.navigate(['/scores', this.quizId, {classId:this.quiz.classId}])
+  }
+
   getTime(){
     let mins:string =  (this.time.getMinutes() < 10) ? '0' + this.time.getMinutes() : this.time.getMinutes().toString();
     let secs:string =  (this.time.getSeconds() < 10) ? '0' + this.time.getSeconds() : this.time.getSeconds().toString();

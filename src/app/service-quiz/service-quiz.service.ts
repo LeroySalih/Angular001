@@ -1,14 +1,15 @@
 import { Injectable } from '@angular/core';
 import { Http, Response }          from '@angular/http';
 import {CreateMsg} from "../class-link/class-link.component";
-
+import {ServerLib} from "../serverLib"
 @Injectable()
 export class QuizService {
 
   quizUrl:string = "";
 
   constructor(private http:Http) {
-    this.quizUrl = "http://localhost:8082/quizzes"
+    this.quizUrl = ServerLib.getServerAddress("/quizzes")
+
   }
 
   getQuizes() {

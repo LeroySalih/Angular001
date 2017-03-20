@@ -1,24 +1,26 @@
 
+<h1>
+  Pupils Score for Class <span *ngIf="this.class">{{this.class.name}}</span>
+</h1>
+<div class="scoreInput">
 <form #f="ngForm" (ngSubmit)="saveForm(f.value)">
   <div>
     <br/>
-    <md-select placeholder="Pupil" name="pupilId" ngModel>
-      <md-option *ngFor="let pupil of this.pupils" value="{{pupil._id}}">{{pupil.name}}</md-option>
+    <md-select class="scoreField" style="min-width:450px" *ngIf="this.pupils" placeholder="Pupil" name="pupilId" ngModel>
+      <md-option *ngFor="let pupil of this.getPupils()" value="{{pupil._id}}">{{pupil.lName}},{{pupil.fName}}</md-option>
     </md-select>
-    <md-select placeholder="level" name="level" ngModel>
+    <md-select class="scoreField" placeholder="level" name="level" ngModel>
       <md-option value="1">1 Star</md-option>
       <md-option value="2">2 Star</md-option>
       <md-option value="3">3 Star</md-option>
-      <md-option value="4">4 Star</md-option>
-      <md-option value="5">5 Star</md-option>
     </md-select>
-    <md-select placeholder="type" name="type" ngModel>
+    <md-select class="scoreField" placeholder="type" name="type" ngModel>
       <md-option value="addition">Addition</md-option>
       <md-option value="subtraction">Subtraction</md-option>
       <md-option value="multiplication">Multiplication</md-option>
       <md-option value="division">Division</md-option>
     </md-select>
-    <md-select placeholder="score" name="score" ngModel>
+    <md-select class="scoreField" placeholder="score" name="score" ngModel>
       <md-option value="1">1</md-option>
       <md-option value="2">2</md-option>
       <md-option value="3">3</md-option>
@@ -29,3 +31,32 @@
   </div>
 </form>
 
+</div>
+
+<div class="pupilList">
+  <div *ngFor="let pupil of this.getPupils()" class="pupilCard">
+    <h1>{{pupil.fName}}</h1>
+    <div>
+      <table>
+        <tr>
+          <td rowspan="4"><img class="profilePic" src="/img/pupils/{{pupil._id}}.jpeg"></td>
+          <td>Addition</td>
+          <td><img class="starImage" *ngIf="pupil.addition > '0'" src="/img/Star{{pupil.addition}}.png"/></td>
+        </tr>
+        <tr>
+          <td>Subtraction</td>
+          <td><img class="starImage" *ngIf="pupil.subtraction > '0'" src="/img/Star{{pupil.subtraction}}.png"/></td>
+        </tr>
+        <tr>
+          <td>Multiplication</td>
+          <td><img class="starImage" *ngIf="pupil.multiplication > '0'" src="/img/Star{{pupil.multiplication}}.png"/></td>
+        </tr>
+        <tr>
+          <td>Division</td>
+          <td><img class="starImage" *ngIf="pupil.division > '0'" src="/img/Star{{pupil.division}}.png"/></td>
+        </tr>
+      </table>
+
+    </div>
+  </div>
+</div>

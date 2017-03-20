@@ -112,15 +112,19 @@ router.get('/classes/:classId', function(req, res, next){
 
 
     var classId = req.params.classId;
-
-    console.log('schoolId', schoolId);
     console.log('classId', classId);
 
+
     db.collection('schools')
-        .find({"classes._id":ObjectId(classId)}, {'classes._id':1, 'classes.name':1})
+        .find({"classes._id":ObjectId(classId)},
+          {
+            classes: {
+              $elemMatch : {_id : ObjectId(classId)}
+            }
+        })
         .toArray(function (err, docs) {
             console.log(docs)
-            res.json(docs);
+            res.json(docs[0].classes[0]);
         })
 
 

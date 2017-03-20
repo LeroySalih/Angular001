@@ -5,6 +5,7 @@ import { Observable } from 'rxjs/Observable';
 import 'rxjs/add/operator/catch';
 import 'rxjs/add/operator/map';
 import {Score} from "../models/score";
+import {ServerLib} from "../serverLib";
 
 @Injectable()
 export class PupilService {
@@ -12,7 +13,7 @@ export class PupilService {
   pupilUrl:string;
 
   constructor(private http:Http) {
-    this.pupilUrl = "http://localhost:8082/pupils"
+    this.pupilUrl = ServerLib.getServerAddress("/pupils")
   }
 
   getPupils(classId:string){
@@ -28,7 +29,7 @@ export class PupilService {
 
     score.level = Number(score.level);
     score.score = Number(score.score);
-    
+
     return this.http.post(url,score, options)
       .map(this.extractData)
   }

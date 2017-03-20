@@ -6,10 +6,9 @@
   <div *ngIf="this.quiz">
   <div>
     <app-timer></app-timer>
-    <button md-raised-button (click)="handleShowQuestions()">Show Questions</button>
-    <button md-raised-button (click)="handleShowAnswers()">Show Answers</button>
-    <button md-raised-button >Scores</button>
-    <button md-raised-button (click)="handleBackToSchool()">Back to School</button>
+    <button md-raised-button (click)="handleShowAnswers(); false;">Show Answers</button>
+    <button md-raised-button (click)="handleGoToScores(); false;">Scores</button>
+    <button md-raised-button (click)="handleBackToSchool(); false;">Back to School</button>
   </div>
 
   <div *ngFor="let starLevel of this.quiz.starLevels">

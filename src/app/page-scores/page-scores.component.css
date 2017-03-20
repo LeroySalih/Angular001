@@ -1,0 +1,50 @@
+
+.scoreInput {
+  margin : 4px;
+  padding : 4px;
+
+}
+
+.scoreField {
+  margin-left:5px;
+}
+
+.pupilList {
+  display: flex;
+  flex-direction: row;
+  flex-wrap: wrap;
+}
+
+.pupilCard {
+  border : solid 1px black;
+  flex  : 1;
+  min-width : 300px;
+  max-width : 300px;
+  margin : 10px;
+  padding : 5px;
+  background-color: lightblue;
+  border-radius: 3px;
+}
+
+.pupilCard h1 {
+  font-family: "Helvetica Neue Light", "HelveticaNeue-Light", "Helvetica Neue", Calibri, Helvetica, Arial, sans-serif;
+  font-size: large;
+}
+
+.pupilCard td {
+  font-family: "Helvetica Neue Light", "HelveticaNeue-Light", "Helvetica Neue", Calibri, Helvetica, Arial, sans-serif;
+  font-size: medium;
+}
+
+.profilePic {
+  width  :100px;
+  height: 150px;
+  margin: 2px;
+  border: solid #efefef 1px;
+  padding : 2px;
+}
+
+.starImage {
+  width : 70px;
+
+}

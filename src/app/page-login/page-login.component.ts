@@ -26,9 +26,11 @@ export class PageLoginComponent implements OnInit, OnDestroy {
   ngOnInit() {
     this.userService.currentUser.subscribe(
       (user) => {
-        // console.log("page-login received new user",user)
+
+        console.log("page-login received new user",user)
+
         if (user){
-        //  console.log("Navigating to : /school ",user.schoolId)
+          console.log("Navigating to : /school ",user.schoolId)
           this.router.navigate(['/school', user.schoolId])
         }
 
@@ -40,8 +42,10 @@ export class PageLoginComponent implements OnInit, OnDestroy {
  //   this.userService.currentUser.unsubscribe()
   }
 
-  handleLogin() {
-    this.userService.loginUser("leroysalih@bisak.org","password");
+  handleLogin(f) {
+
+    console.log(`Logging in with `, f);
+    this.userService.loginUser(f.email, f.password);
   }
 
   handleRegister(){

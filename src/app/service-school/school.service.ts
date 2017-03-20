@@ -6,9 +6,10 @@ import { Http, Response }          from '@angular/http';
 import { Observable } from 'rxjs/Observable';
 import 'rxjs/add/operator/catch';
 import 'rxjs/add/operator/map';
+import {Class} from "../models/class";
 
 
-
+import { ServerLib} from '../serverLib'
 
 
 @Injectable()
@@ -18,7 +19,8 @@ export class SchoolService {
   schoolsURL: string = "";
 
   constructor(private http: Http) {
-    this.schoolsURL = "http://localhost:8082/schools"
+    this.schoolsURL = ServerLib.getServerAddress("/schools")
+    //"http://localhost:8082/schools"
   }
 
 
@@ -30,11 +32,21 @@ export class SchoolService {
   }
 
   getSchool (schoolId: string) : Observable<School[]> {
+    let requestUrl = ServerLib.getServerAddress("/schools/" + schoolId)
+    console.log('Requesting: ', requestUrl);
+    
     //noinspection TypeScriptValidateTypes,TypeScriptValidateTypes
-    return this.http.get(`${this.schoolsURL}\\${schoolId}`)
+    return this.http.get(ServerLib.getServerAddress("/schools/" + schoolId))
       .map(this.extractData)
       .catch(this.handleError);
 
+  }
+
+  getClass (classId : string) : Observable<Class> {
+
+    return this.http.get(`${this.schoolsURL}\\classes\\${classId}`)
+      .map(this.extractData)
+      .catch(this.handleError)
   }
 
 

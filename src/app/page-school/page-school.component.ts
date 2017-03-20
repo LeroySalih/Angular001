@@ -35,7 +35,7 @@ export class PageSchoolComponent implements OnInit {
 
   onCreateQuiz(msg:CreateMsg){
  //   console.log('Creating Quiz for classId ', msg.classId)
-    
+
       this.quizService.createQuiz(msg)
         .subscribe((result) =>
         {
@@ -61,7 +61,7 @@ export class PageSchoolComponent implements OnInit {
 
             (data) => {
    //           console.log (`Assigning ${data[0]} to this.school`)
-   //           console.log(data)
+              console.log(`School received:`,data)
               this.school = data[0]}
           )
 
