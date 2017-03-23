@@ -1,11 +1,18 @@
 @font-face{
   font-family: 'DigitalFont';
-  src: url('/fonts/digital-7.ttf') format('truetype')
+  src: url('/fonts/digital-7.ttf') format('truetype');
 }
 
 .countdownTimer {
   font-family: 'DigitalFont';
   font-size: large;
+}
+
+.quizControls {
+  display : flex;
+  flex-direction: row;
+
+  padding : 20px;
 }
 
 .starLevel {
@@ -20,6 +27,11 @@
   min-width : 40px;
   background-color: #00acc1;
   padding:1px;
+}
+
+.starLevelIndicator img {
+  width: 100px;
+  transform: translatey(40px) rotate(90deg);
 }
 
 

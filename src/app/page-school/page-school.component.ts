@@ -1,4 +1,4 @@
-import { Component, OnInit, Input, trigger, style, state, transition, animate } from '@angular/core';
+import {Component, OnInit, Input, trigger, style, state, transition, animate, Optional} from '@angular/core';
 import {Router, ActivatedRoute, Params} from "@angular/router";
 import {SchoolService} from "../service-school/school.service";
 import {QuizService} from "../service-quiz/service-quiz.service";
@@ -7,7 +7,23 @@ import {CreateMsg} from '../class-link/class-link.component'
 import {School} from "../models/school";
 import {routerTransition} from "../router.animations";
 
+import {MdDialog, MdDialogRef} from '@angular/material';
 
+@Component({
+  template: `
+    <p>This is a dialog</p>
+    <p>
+      <label>
+        This is a text box inside of a dialog.
+        <input #dialogInput>
+      </label>
+    </p>
+    <p> <button md-button (click)="dialogRef.close(dialogInput.value)">CLOSE</button> </p>
+  `,
+})
+export class DialogContent {
+  constructor(@Optional() public dialogRef: MdDialogRef<DialogContent>) { }
+}
 
 @Component({
   selector: 'app-page-school',
@@ -22,15 +38,24 @@ import {routerTransition} from "../router.animations";
 export class PageSchoolComponent implements OnInit {
 
   school : School;
+  selectedOption: string;
 
   constructor( private router:Router,
                private route: ActivatedRoute,
                private schoolService : SchoolService,
-               private quizService : QuizService
+               private quizService : QuizService,
+               private dialog: MdDialog
 
   ) {
     this.onCreateQuiz = this.onCreateQuiz.bind(this);
 
+  }
+
+  openDialog() {
+    let dialogRef = this.dialog.open(DialogContent);
+    dialogRef.afterClosed().subscribe(result => {
+      this.selectedOption = result;
+    });
   }
 
   onCreateQuiz(msg:CreateMsg){

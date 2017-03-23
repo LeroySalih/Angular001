@@ -6,7 +6,7 @@
 .questionType {
   min-width : 25px;
   font-weight: 400;
-  font-size: large;
+  font-size: xx-large;
 }
 
 .questions{
@@ -18,10 +18,17 @@
 }
 .question {
   flex-grow: 1;
-  font-size  :large;
+  font-size  :x-large;
+  min-width : 240px;
+  max-width: 240px;
 
 }
 .answer {
   color: red;
+  padding: 5px;
   text-decoration: underline;
+}
+
+.additionSign {
+  font-size: 30px;
 }

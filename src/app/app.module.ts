@@ -19,7 +19,7 @@ import { PageHomeComponent } from './page-home/page-home.component';
 import { PageAboutComponent } from './page-about/page-about.component';
 import { PageContactComponent } from './page-contact/page-contact.component';
 import { PageAdminComponent } from './page-admin/page-admin.component';
-import {PageSchoolComponent} from './page-school/page-school.component';
+import {PageSchoolComponent, DialogContent} from './page-school/page-school.component';
 import { PageRegisterComponent} from './page-register/page-register.component';
 import { PageQuizComponent } from './page-quiz/page-quiz.component';
 import { ClassLinkComponent } from './class-link/class-link.component';
@@ -74,7 +74,7 @@ const appRoutes: Routes = [
     PageRegisterComponent,
     TimerComponent,
     PageSchoolAdminComponent,
-
+    DialogContent
 
 
   ],
@@ -86,6 +86,9 @@ const appRoutes: Routes = [
     HttpModule,
     MaterialModule,
     MdDialogModule,
+  ],
+  entryComponents: [
+    DialogContent
   ],
   providers: [LoggerService, UserService],
   bootstrap: [AppComponent]

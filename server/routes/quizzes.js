@@ -52,44 +52,194 @@ router.post('/', function (req, res, next){
 
 });
 
-function additionQuestion (stars) {
+
+function level5AdditionQuestion (stars) {
+  var newQuestion = {question:`Not Set`, answer:-99}
+
+  //console.log(`Creating an addition question for ${stars} stars`)
+  let a = 0, b = 0, answer =0;
+
+  switch (stars)
+  {
+    case 1 :
+      a = Number(25 + (Math.random() * 75)).toFixed(0);
+      b = Number(25 + (Math.random() * 75)).toFixed(0);
+      answer = Number(Number(a) + Number(b)).toFixed(0);
+
+      newQuestion =  {a, b, answer, question: `${a} + ${b} =`, }
+      break;
+
+    case 2 :
+      a = Number(25 + (Math.random() * 75)).toFixed(0);
+      b = Number((Math.random() * 50) - 50).toFixed(0);
+      answer = Number(Number(a) + Number(b)).toFixed(0);
+
+      newQuestion =  {a, b, answer, question: `${a} <span class="additionSign">+</span> ${b} =`, }
+      break;
+
+    case 3 :
+      a = Number(Math.random() * 100).toFixed(0);
+      b = Number(Math.random() * 100).toFixed(0);
+      answer = Number(Number(b) - Number(a)).toFixed(0);
+
+      newQuestion =  {a, b, answer, question: `${a} + ?? = ${b}`, }
+
+    default :
+      console.log(`Addition Question, Unknown Level, ${stars}`)
+      break
+  }
+  return newQuestion;
+
+}
+
+function level5SubtractionQuestion (stars) {
+  console.log(`Creating an subtraction question for ${stars} stars`)
+
+  let a = 0, b = 0, answer = 0;
+
+  var newQuestion = {question:`Not Set`, answer:-99}
+
+  switch (stars)
+  {
+    case 1 :
+      a = Number(2 + (Math.random() * 48)).toFixed(0);
+      b = Number(30 + (Math.random() * 70)).toFixed(0);
+      answer = Number(Number(a) - Number(b)).toFixed(0);
+
+      newQuestion =  {a, b, answer, question: `${a} - ${b} =`, }
+      break;
+
+    case 2 :
+      a = Number(2 + (Math.random() * 48)).toFixed(0);
+      b = Number(10 - (Math.random() * 20)).toFixed(0);
+      answer = Number(Number(a) - Number(b)).toFixed(0);
+
+      newQuestion =  {a, b, answer, question: `${a} - ${b} =`, }
+      break;
+
+    case 3 :
+      a = Number(Math.random() * 100).toFixed(0);
+      b = Number(Math.random() * 100).toFixed(0);
+      answer = -1 * Number(Number(Number(b) - Number(a)).toFixed(0));
+
+      newQuestion =  {a, b, answer, question: `${a} - ?? = ${b}`, }
+
+    default :
+      console.log(`Addition Question, Unknown Level, ${stars}`)
+      break
+  }
+
+  return newQuestion;
+}
+
+function level5Multiplication (stars) {
+  let a = 0, b = 0, answer = 0;
+
+  var newQuestion = {question:`Not Set`, answer:-99}
+
+  switch (stars)
+  {
+    case 1 :
+      a = Number(Math.random() * 10).toFixed(1)
+      b = Number(Math.random() * 10).toFixed(1)
+
+      answer = Number(Number(a) * Number(b)).toFixed(2);
+
+      newQuestion =  {a, b, answer, question: `${a} x ${b} =`, }
+      break;
+
+    case 2 :
+      a = Number(Math.random() * 10).toFixed(1)
+      b = Number(Math.random() * 10).toFixed(2)
+
+      answer = Number(Number(a) * Number(b)).toFixed(3);
+
+      newQuestion =  {a, b, answer, question: `${a} x ${b} =`, }
+      break;
+
+    case 3 :
+      a = Number( 1 + (Math.random() * 19)).toFixed(0)
+
+      answer = Number(1 + (Math.random() * 19)).toFixed(0);
+
+      b = Number(a) * Number (answer)
+
+
+      newQuestion =  {a, b, answer, question: `${a} x ?? = ${b}`, }
+      break;
+
+    default :
+      break
+  }
+  return newQuestion;
+}
+
+function level5Division (stars){
+
+  let a = 0, b = 0, answer =0;
+
+  var newQuestion = {question:`Not Set`, answer:-99}
+
+  switch (stars)
+  {
+    case 1 :
+
+      // result is integer in the range 4-9
+
+      answer = 4 + Math.ceil(Math.random() * 5)
+      b = 4 + Math.ceil(Math.random() * 5)
+      a = answer * b;
+      newQuestion =  {a, b, answer, question: `${a} ÷ ${b} =`, }
+
+      break;
+
+    case 2 :
+
+      answer = 11 + Math.ceil(Math.random() * 88)
+
+      b = 4 + Math.ceil(Math.random() * 5)
+
+      a = answer * b;
+
+      newQuestion =  {a, b, answer, question: `${a} ÷ ${b} =`, }
+      break;
+
+    case 3 :
+
+      // result is integer in the range 1.1-9.9
+
+      answer = 4 + Math.ceil(Math.random() * 25)
+      b = 4 + Math.ceil(Math.random() * 25)
+      a = answer * b;
+      newQuestion =  {a, b, answer, question: `${a} ÷ ${b} =`, }
+      break;
+
+
+    default :
+      break
+  }
+  return newQuestion;
+}
+
+function additionQuestion (level, stars) {
     var newQuestion = {question:`Not Set`, answer:-99}
 
     //console.log(`Creating an addition question for ${stars} stars`)
     let a = 0, b = 0, answer =0;
 
-    switch (stars)
+    switch (level)
     {
-        case 1 :
-            a = Number(Math.random() * 100).toFixed(0);
-            b = Number(Math.random() * 100).toFixed(0);
-            answer = Number(Number(a) + Number(b)).toFixed(0);
-
-            newQuestion =  {a, b, answer, question: `${a} + ${b} =`, }
-            break;
-
-        case 2 :
-            a = Number(Math.random() * 100).toFixed(1);
-            b = Number(Math.random() * 100).toFixed(1);
-            answer = Number(Number(a) + Number(b)).toFixed(1);
-
-            newQuestion =  {a, b, answer, question: `${a} + ${b} =`, }
-
-        case 3 :
-            a = Number(Math.random() * 100).toFixed(2);
-            b = Number(Math.random() * 100).toFixed(2);
-            answer = Number(Number(a) + Number(b)).toFixed(2);
-
-            newQuestion =  {a, b, answer, question: `${a} + ${b} =`, }
+        case 5 :
+            return level5AdditionQuestion(stars)
 
         default :
-            console.log(`Addition Question, Unknown Level, ${stars}`)
+            console.log(`Addition Question, Unknown Level, ${level}`)
             break
     }
     return newQuestion;
 }
 
-function subtractionQuestion (stars) {
+function subtractionQuestion (level, stars) {
 
     console.log(`Creating an subtraction question for ${stars} stars`)
 
@@ -97,128 +247,54 @@ function subtractionQuestion (stars) {
 
     var newQuestion = {question:`Not Set`, answer:-99}
 
-    switch (stars)
+    switch (level)
     {
-        case 1 :
-            a = 50 + Number(Number(Math.random() * 50).toFixed(0))
-            b = Number(Math.random() * 50).toFixed(0)
-
-            answer = Number(Number(a) - Number(b)).toFixed(0);
-
-            newQuestion =  {a, b, answer, question: `${a} - ${b} =`, }
-            break;
-
-        case 2 :
-            a = Number(50 + (Math.random() * 50)).toFixed(2)
-            b = Number(Math.random() * 50).toFixed(2)
-
-            answer = Number(Number(a) - Number(b)).toFixed(2);
-
-            newQuestion =  {a, b, answer, question: `${a} - ${b} =`, }
-            break;
-
-        case 3 :
-            a = Number(Number(Math.random() * 50).toFixed(2))
-            b = Number(Math.random() * 50).toFixed(2)
-
-            answer = Number(Number(a) - Number(b)).toFixed(2);
-
-            newQuestion =  {a, b, answer, question: `${a} - ${b} =`, }
-            break;
+        case 5 :
+            return level5SubtractionQuestion(stars)
 
         default :
-            console.log(`Subtraction Question, Unknown Level, ${stars}`)
+            console.log(`Subtraction Question, Unknown Level, ${level}`)
             break
     }
+
     return newQuestion;
 }
 
-function multiplicationQuestion (stars) {
+function multiplicationQuestion (level, stars) {
 
-    let a = 0, b = 0, answer = 0;
+  console.log(`Creating an subtraction question for ${stars} stars`)
 
-    var newQuestion = {question:`Not Set`, answer:-99}
+  let a = 0, b = 0, answer = 0;
 
-    switch (stars)
-    {
-        case 1 :
-            a = Number(Math.random() * 10).toFixed(0)
-            b = Number(Math.random() * 10).toFixed(0)
+  var newQuestion = {question:`Not Set`, answer:-99}
 
-            answer = Number(a) * Number(b);
+  switch (level)
+  {
+    case 5 :
+      return level5Multiplication(stars)
 
-            newQuestion =  {a, b, answer, question: `${a} x ${b} =`, }
-            break;
+    default :
+      console.log(`Multiplication Question, Unknown Level, ${level}`)
+      break
+  }
 
-        case 2 :
-            a = Number(Math.random() * 10).toFixed(1)
-            b = Number(Math.random() * 10).toFixed(1)
-
-            answer = Number(Number(a) * Number(b)).toFixed(2);
-
-            newQuestion =  {a, b, answer, question: `${a} x ${b} =`, }
-            break;
-
-        case 3 :
-            a = Number(Math.random() * 10).toFixed(2)
-            b = Number(Math.random() * 10).toFixed(2)
-
-            answer = Number(Number(a) * Number(b)).toFixed(4);
-
-            newQuestion =  {a, b, answer, question: `${a} x ${b} =`, }
-            break;
-        default :
-            break
-    }
-    return newQuestion;
+  return newQuestion;
 }
 
-function divisionQuestion (stars) {
+function divisionQuestion (level, stars) {
 
     let a = 0, b = 0, answer =0;
 
     var newQuestion = {question:`Not Set`, answer:-99}
 
-    switch (stars)
+    switch (level)
     {
-        case 1 :
-
-            // result is integer in the range 4-9
-
-            answer = 4 + Math.ceil(Math.random() * 5)
-            b = 4 + Math.ceil(Math.random() * 5)
-            a = answer * b;
-            newQuestion =  {a, b, answer, question: `${a} ÷ ${b} =`, }
-
-            break;
-
-        case 2 :
-
-            answer = 11 + Math.ceil(Math.random() * 88)
-
-            b = 4 + Math.ceil(Math.random() * 5)
-
-            a = answer * b;
-
-            newQuestion =  {a, b, answer, question: `${a} ÷ ${b} =`, }
-            break;
-
-        case 3 :
-
-            // result is integer in the range 1.1-9.9
-
-            answer = Number((11 + Math.ceil(Math.random() * 88))/10).toPrecision(2)
-
-            b = Number((4 + Math.ceil(Math.random() * 5))/10).toPrecision(2)
-
-            a = Number((answer * b)/10).toPrecision(2);
-
-            newQuestion =  {a, b, answer, question: `${a} ÷ ${b} =`, }
-            break;
-
+        case 5 :
+            return level5Division(stars)
 
         default :
-            break
+          console.log(`Division Question, Unknown Level, ${level}`)
+          break
     }
     return newQuestion;
 }
@@ -228,7 +304,7 @@ function newQuiz(classId, options){
 
     newQuiz.created = Date.now();
     newQuiz.classId = classId;
-    
+
     newQuiz.starLevels = [];
 
     var stars = 1
@@ -245,25 +321,25 @@ function newQuiz(classId, options){
 
         if (options.addition == true){
             for (var i = 0; i < 5; i++){
-                starLevel.additionQuestions.push(additionQuestion(stars))
+                starLevel.additionQuestions.push(additionQuestion(5, stars))
             }
         }
 
         if (options.subtraction){
             for (var i = 0; i < 5; i++){
-                starLevel.subtractionQuestions.push(subtractionQuestion(stars))
+                starLevel.subtractionQuestions.push(subtractionQuestion(5, stars))
             }
         }
 
         if (options.multiplication){
             for (var i = 0; i < 5; i++){
-                starLevel.multiplicationQuestions.push(multiplicationQuestion(stars))
+                starLevel.multiplicationQuestions.push(multiplicationQuestion(5, stars))
             }
         }
 
         if(options.division){
             for (var i = 0; i < 5; i++){
-                starLevel.divisionQuestions.push(divisionQuestion(stars))
+                starLevel.divisionQuestions.push(divisionQuestion(5, stars))
             }
         }
 

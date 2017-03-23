@@ -8,7 +8,7 @@ import { Component, OnInit } from '@angular/core';
 export class TimerComponent implements OnInit {
 
   interval: any;
-  time:Date = new Date((0 * 60 * 1000) + (5 * 1000));
+  time:Date = new Date(5 * 60 * 1000);
 
   constructor() {
     this.startTimer = this.startTimer.bind(this);
@@ -30,9 +30,7 @@ export class TimerComponent implements OnInit {
       if (this.time.getMinutes() == 0 && this.time.getSeconds() ==0)
       {
         this.stopTimer()
-        console.log("Boom...")
       } else {
-        console.log(`The time is ${this.time.getMinutes()}:${this.time.getSeconds()}` )
         this.time.setSeconds(this.time.getSeconds() - 1)
       }
 

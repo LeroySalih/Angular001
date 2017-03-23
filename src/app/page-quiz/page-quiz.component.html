@@ -4,11 +4,12 @@
     No quiz found
   </div>
   <div *ngIf="this.quiz">
-  <div>
+  <div class="quizControls">
     <app-timer></app-timer>
-    <button md-raised-button (click)="handleShowAnswers(); false;">Show Answers</button>
-    <button md-raised-button (click)="handleGoToScores(); false;">Scores</button>
-    <button md-raised-button (click)="handleBackToSchool(); false;">Back to School</button>
+    <button md-raised-button (click)="handleShowAnswers(); ">Show Answers</button>
+
+    <button md-raised-button (click)="handleGoToScores(); ">Scores</button>
+
   </div>
 
   <div *ngFor="let starLevel of this.quiz.starLevels">
@@ -16,8 +17,8 @@
 
       <md-card [@showQuestions]="this.showQuestions" class="starLevel">
 
-        <div class="starLevelIndicator">{{starLevel.stars}}
-
+        <div class="starLevelIndicator">
+          <img src="/img/Star{{starLevel.stars}}.png"/>
         </div>
 
         <div class="starLevelQuestions">
@@ -30,11 +31,11 @@
                                [questions]="starLevel.subtractionQuestions"
                                [showAnswers]="this.showAnswers">
           </app-star-level-type>
-          <app-star-level-type type="*"
+          <app-star-level-type type="x"
                                [questions]="starLevel.multiplicationQuestions"
                                [showAnswers]="this.showAnswers">
           </app-star-level-type>
-          <app-star-level-type type="/"
+          <app-star-level-type type="÷"
                                [questions]="starLevel.divisionQuestions"
                                [showAnswers]="this.showAnswers">
           </app-star-level-type>
@@ -42,8 +43,6 @@
         </div>
       </md-card>
   </div>
-    Displaying QuizId : {{this.quiz._id}}
-    Displaying ClassId  : {{this.quiz.classId}}
-    Created : {{this.quiz.created}}
+
   </div>
 </div>
