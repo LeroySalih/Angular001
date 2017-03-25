@@ -29,6 +29,7 @@ import { PageScoresComponent } from './page-scores/page-scores.component';
 import { StarLevelTypeComponent } from './star-level-type/star-level-type.component';
 import { TimerComponent } from './timer/timer.component';
 import { PageSchoolAdminComponent } from './page-school-admin/page-school-admin.component';
+import { NavHeaderComponent } from './nav-header/nav-header.component';
 
 
 
@@ -74,7 +75,8 @@ const appRoutes: Routes = [
     PageRegisterComponent,
     TimerComponent,
     PageSchoolAdminComponent,
-    DialogContent
+    DialogContent,
+    NavHeaderComponent
 
 
   ],

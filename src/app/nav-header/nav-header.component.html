@@ -1,0 +1,6 @@
+<header *ngIf="currentUser">
+  <a routerLink="/">Home</a>
+  <a *ngIf="currentUser" routerLink="/school/{{this.currentUser.schoolId}}" >School</a>
+  <a routerLink="/contact">Contact</a>
+  <a routerLink="/about">About</a>
+</header>

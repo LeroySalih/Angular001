@@ -30,19 +30,4 @@ h1 {
   font-size: x-large;
 }
 
-a:link {
-  font-family: Tahoma;
-  font-size : large;
-  font-weight: 200;
-  color : #7d7d7d;
-  text-decoration:none;
-}
 
-a:visited {
-  color : #7d7d7d;
-}
-
-a:hover {
-  color :red;
-  text-decoration: none;
-}

@@ -1,0 +1,24 @@
+header {
+  padding : 10px;
+  background-color : darkblue;
+
+}
+
+header a:link {
+  font-family: Tahoma;
+  font-size : large;
+  font-weight: 200;
+  color : white;
+  text-decoration:none;
+  padding : 10px;
+}
+
+header a:visited {
+  color : white;
+}
+
+header a:hover {
+  color :red;
+  text-decoration: none;
+}
+
