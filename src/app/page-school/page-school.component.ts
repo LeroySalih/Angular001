@@ -8,6 +8,7 @@ import {School} from "../models/school";
 import {routerTransition} from "../router.animations";
 
 import {MdDialog, MdDialogRef} from '@angular/material';
+import {Class} from "../models/class";
 
 @Component({
   template: `
@@ -26,7 +27,7 @@ import {MdDialog, MdDialogRef} from '@angular/material';
   
     </p>
     <p> 
-      <button md-button (click)="dialogRef.close({level: f.value}); false;">Close</button>
+      <button md-button (click)="dialogRef.close({payload: f.value}); false;">Close</button>
        <button md-button (click)="dialogRef.close(null)">Cancel</button>
     </p>
     </form>
@@ -65,23 +66,35 @@ export class PageSchoolComponent implements OnInit {
 
   openDialog() {
     let dialogRef = this.dialog.open(DialogContent);
-    dialogRef.afterClosed().subscribe(result => {
+     dialogRef.afterClosed().subscribe(result => {
       console.log(`DlgResult: `, result)
       this.selectedOption = result;
     });
   }
 
-  onCreateQuiz(msg:CreateMsg){
- //   console.log('Creating Quiz for classId ', msg.classId)
+  onCreateQuiz(msg:Class){
+
+    var classId = msg._id;
+
+    let dialogRef = this.dialog.open(DialogContent);
+
+    dialogRef.afterClosed().subscribe(result => {
+
+      var msg:CreateMsg = new CreateMsg(classId, result.payload);
+
+      console.log(`DlgResult: `, msg)
 
       this.quizService.createQuiz(msg)
-        .subscribe((result) =>
+        .subscribe((newQuiz) =>
         {
           //       console.log(`Quiz ID: ${result._id} returned`);
           this.router.navigate(['/quiz',
-            result["_id"],
-            {schoolId: this.school["_id"]}]);
+            newQuiz["_id"],  {schoolId: this.school["_id"]}]);
         })
+
+    })
+
+
 
     //});
 

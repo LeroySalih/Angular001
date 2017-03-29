@@ -42,7 +42,7 @@ router.post('/', function (req, res, next){
 
     var db = req.app.get('db')
     var classId = req.body.classId;
-    console.log({msg:`Creating Quiz for `, payload : req.body})
+    console.log(`Creating Quiz for `,  req.body)
 
 
     db.collection('quizzes').insert(newQuiz(classId, req.body.payload))

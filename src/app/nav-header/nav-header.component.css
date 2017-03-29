@@ -1,7 +1,21 @@
 header {
   padding : 10px;
   background-color : darkblue;
+  display : flex;
+  flex-direction: row;
+  font-family: Tahoma;
+  font-size : large;
+  font-weight: 200;
+}
 
+.menuLink {
+
+}
+
+.logonLink {
+  flex-grow: 1;
+  text-align: right;
+  color: white;
 }
 
 header a:link {
@@ -11,6 +25,10 @@ header a:link {
   color : white;
   text-decoration:none;
   padding : 10px;
+}
+
+header a:last-of-type {
+  color : red;
 }
 
 header a:visited {

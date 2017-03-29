@@ -40,9 +40,6 @@ export class UserService {
                       .subscribe((result:Response) => {
 
                         var user:User = result.json();
-
-                        console.log('Users Service login:', user);
-
                         window.localStorage.setItem("CURRENT_USER", JSON.stringify(user))
                         this.currentUser.next(user)
 

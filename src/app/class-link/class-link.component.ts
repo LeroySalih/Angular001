@@ -9,18 +9,15 @@ import {Class} from "../models/class";
 export class ClassLinkComponent implements OnInit {
 
   @Input() class:Class;
-  @Output() onCreateQuiz:EventEmitter<CreateMsg> = new EventEmitter<CreateMsg>()
+  @Output() onCreateQuiz:EventEmitter<Class> = new EventEmitter<Class>()
 
   constructor() { }
 
   ngOnInit() {
   }
 
-  handleCreateQuiz(f){
-    //console.log('Emitting ClassID', this.class._id);
-    //console.log(f);
-    let msg = {classId : this.class._id, payload: f}
-    this.onCreateQuiz.emit(msg);
+  handleCreateQuiz(){
+    this.onCreateQuiz.emit(this.class);
   }
 
 }

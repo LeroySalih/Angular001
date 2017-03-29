@@ -1,7 +1,7 @@
 <div class="schoolPage">
   <div *ngIf="school">
     <h2>Quizzes for : {{school.name}}</h2>
-    <button (click)="openDialog(); false;">OPen</button>
+
     <div id="classList">
       <app-class-link *ngFor="let class of school.classes"
                       [class]="class"

@@ -49,6 +49,11 @@ var mongoURL = (config.isHosted) ? process.env.MONGODB_URI : config.mongoDbUrl;
 
 MongoClient.connect(mongoURL,
     (err, database) => {
+ 
+      if (err) {
+        console.log('Can not connect to DB')
+        process.exit();
+      }
 
       assert (database != null, "Error Connecting to MongoDB")
       console.log("Connected to MongoDB");

@@ -41,25 +41,36 @@ router.post('/pupil/:pupilId/score', function(req, res, next){
     var db = req.app.get('db');
     var score = req.body;
 
-    score.created = Date.now();
+
 
     var objUpdate = {};
+
+    // Update level is score == 5
     if (score.score == "5"){
       objUpdate[score.type] = score.level;
-      score[score.type] = score.level;
     }
+
+    // record new score
+    score.created = Date.now();
+    
+
+  var mongoObj = {
+    '$push' : {
+                score : { '$each' : [score], '$position' : 0}
+              }
+  }
+
+  if (score.score == "5"){
+    var tmpScore = {};
+    tmpScore[score.type] = score.level;
+    mongoObj['$set'] = tmpScore;
+  }
+
 
     // Push the score on to the pupil record.
     db.collection('pupils').updateOne(
         {_id:ObjectId(score.pupilId)},
-        {$push : {
-            score : {
-                   $each : [score],
-                   $position : 0
-                }
-            },
-          $set : objUpdate
-        }
+        mongoObj
     ).then (
       (result) => {res.json(score)}
     )
