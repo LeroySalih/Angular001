@@ -25,7 +25,7 @@ export class UserService {
     var userData:string = window.localStorage.getItem("CURRENT_USER");
     if (userData)
     {
-      var user:User = JSON.parse(window.localStorage.getItem("CURRENT_USER"));
+      var user:User = JSON.parse(window.localStorage.getItem("CURRENT_USER_TOKEN"));
 
       this.currentUser  = new BehaviorSubject<User>(user);
     } else {
@@ -37,11 +37,16 @@ export class UserService {
   loginUser (email:string, password:string){
 
     return this.http.post(ServerLib.getServerAddress("/users/login"),{email, password})
-                      .subscribe((result:Response) => {
+                      .subscribe((result:any) => {
 
-                        var user:User = result.json();
-                        window.localStorage.setItem("CURRENT_USER", JSON.stringify(user))
-                        this.currentUser.next(user)
+                        var msg = JSON.parse(result._body)
+                        if (msg){
+
+                          window.localStorage.setItem("CURRENT_USER_TOKEN", msg.token)
+
+                        }
+                        //var user:User = result.json();
+                        //this.currentUser.next(user)
 
                       })
 
@@ -49,7 +54,7 @@ export class UserService {
   }
 
   logoutUser () {
-    window.localStorage.setItem("CURRENT_USER", null)
+    window.localStorage.setItem("CURRENT_USER_TOKEN", null)
     this.currentUser.next(null);
 
   }

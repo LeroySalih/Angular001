@@ -12,12 +12,14 @@ var users = require('./routes/users');
 var schools = require ('./routes/schools');
 var quizzes = require('./routes/quizzes');
 var pupils = require ('./routes/pupils');
+var jwt = require('express-jwt');
 
 var app = express();
 
 // view engine setup
 app.set('views', path.join(__dirname, 'views'));
 app.set('view engine', 'jade');
+app.set('superSecret', 'secret');
 
 // uncomment after placing your favicon in /public
 //app.use(favicon(path.join(__dirname, 'public', 'favicon.ico')));
@@ -27,6 +29,8 @@ app.use(bodyParser.urlencoded({ extended: true }));
 app.use(cookieParser());
 app.use(express.static(path.join(__dirname, 'public')));
 app.use(cors());
+
+//app.use(jwt({ secret: 'secret'}).unless({path: ['/token']}));
 
 // app.use('/', index);
 

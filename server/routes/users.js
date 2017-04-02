@@ -2,11 +2,14 @@
 var express = require('express');
 var router = express.Router();
 var crypto =require('crypto');
-
+var jwt = require ('jsonwebtoken');
 var assert = require ('assert');
 
+var verifyJwt = require('../verifyJwt')
+
+
 /* GET users listing. */
-router.get('/', function(req, res, next) {
+router.get('/', verifyJwt, function(req, res, next) {
 
   try {
     // Get DB Connection
@@ -29,11 +32,10 @@ router.get('/', function(req, res, next) {
   }
 });
 
-router.post ('/login', function (req, res, next){
+/* Perform a Login Authorisation */
+router.post ('/login',  function (req, res, next){
 
   try {
-
-
 
     // Get DB Connection
     var db = req.app.get('db')
@@ -51,11 +53,21 @@ router.post ('/login', function (req, res, next){
     db.collection('users')
       .findOne({email, password: encrypt(password)})
       .then((result) => {
+
+        // remove password from user as we're sending it back
         if (result){
           delete result.password
         }
 
-        res.json(result);
+
+        var token = jwt.sign(result, req.app.get('superSecret'), {
+          expiresIn: "24h" // expires in 24 hours
+        });
+
+        res.json({
+            success : true,
+            token : token
+          });
       })
 
 
@@ -66,7 +78,8 @@ router.post ('/login', function (req, res, next){
   }
 });
 
-router.post('/', function (req, res, next){
+/* Create a new user */
+router.post('/', verifyJwt, function (req, res, next){
   try {
     let algorithm = 'aes-256-ctr';
 
@@ -116,6 +129,7 @@ router.post('/', function (req, res, next){
   }
 })
 
+/* private functions */
 function encrypt(text){
   var algorithm = 'aes-256-ctr';
   var salt = process.env.SALT || "testSalt";

@@ -15,7 +15,7 @@ import {Class} from "../models/class";
     <p>This is a dialog</p>
     <form #f="ngForm" (ngSubmit)="dialogRef.close({payload: f.value}); false;">
     <p>
-      <md-select placeholder="level" name="level" #level ngModel>
+      <md-select placeholder="level" name="level" #level ngModel value="4">
         <md-option [value]="4">Level 4</md-option>
         <md-option [value]="5">Level 5</md-option>
         <md-option [value]="6">Level 6</md-option>
@@ -87,9 +87,11 @@ export class PageSchoolComponent implements OnInit {
       this.quizService.createQuiz(msg)
         .subscribe((newQuiz) =>
         {
-          //       console.log(`Quiz ID: ${result._id} returned`);
-          this.router.navigate(['/quiz',
-            newQuiz["_id"],  {schoolId: this.school["_id"]}]);
+          if (newQuiz._id){
+            this.router.navigate(['/quiz',
+              newQuiz["_id"],  {schoolId: this.school["_id"]}]);
+          }
+
         })
 
     })
