@@ -1,7 +1,7 @@
 export class ServerLib {
 
   static getServerAddress(path){
-    return "http://" + window.location.host  + path
+    return window.location.origin  + path
   }
 
 }
