@@ -2,7 +2,10 @@
 var express = require('express');
 var router = express.Router();
 const assert = require('assert');
-var ObjectId = require ('mongodb').ObjectID
+var ObjectId = require ('mongodb').ObjectID;
+var verifyJwt = require('../verifyJwt');
+
+router.use (verifyJwt);
 
 /* GET quizes listing. */
 router.get('/', function(req, res, next) {

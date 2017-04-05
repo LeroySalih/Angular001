@@ -2,7 +2,10 @@
 var express = require('express');
 var router = express.Router();
 const assert = require('assert');
-var ObjectId = require ('mongodb').ObjectID
+var ObjectId = require ('mongodb').ObjectID;
+var verifyJwt = require('../verifyJwt')
+
+router.use (verifyJwt)
 
 /* GET quizes listing. */
 router.get('/:classId', function(req, res, next) {
@@ -52,7 +55,7 @@ router.post('/pupil/:pupilId/score', function(req, res, next){
 
     // record new score
     score.created = Date.now();
-    
+
 
   var mongoObj = {
     '$push' : {

@@ -1,7 +1,7 @@
 import { Injectable } from '@angular/core';
 import { School }  from '../models/school';
 
-import { Http, Response }          from '@angular/http';
+import {Http, Response, Headers, RequestOptions}          from '@angular/http';
 
 import { Observable } from 'rxjs/Observable';
 import 'rxjs/add/operator/catch';
@@ -23,10 +23,19 @@ export class SchoolService {
     //"http://localhost:8082/schools"
   }
 
+  getJWTOptions (){
+
+    let token = window.localStorage.getItem('CURRENT_USER_TOKEN');
+    let headers = new Headers({ 'x-access-token': token });
+    let options = new RequestOptions({ headers: headers });
+
+    return options;
+  }
 
   getSchools (): Observable<School[]> {
     //noinspection TypeScriptValidateTypes
-    return this.http.get(this.schoolsURL)
+
+    return this.http.get(this.schoolsURL, this.getJWTOptions())
       .map(this.extractData)
       .catch(this.handleError);
   }
@@ -34,9 +43,9 @@ export class SchoolService {
   getSchool (schoolId: string) : Observable<School[]> {
     let requestUrl = ServerLib.getServerAddress("/schools/" + schoolId)
     console.log('Requesting: ', requestUrl);
-    
+
     //noinspection TypeScriptValidateTypes,TypeScriptValidateTypes
-    return this.http.get(ServerLib.getServerAddress("/schools/" + schoolId))
+    return this.http.get(ServerLib.getServerAddress("/schools/" + schoolId), this.getJWTOptions())
       .map(this.extractData)
       .catch(this.handleError);
 
@@ -44,7 +53,7 @@ export class SchoolService {
 
   getClass (classId : string) : Observable<Class> {
 
-    return this.http.get(`${this.schoolsURL}\\classes\\${classId}`)
+    return this.http.get(`${this.schoolsURL}\\classes\\${classId}`, this.getJWTOptions())
       .map(this.extractData)
       .catch(this.handleError)
   }

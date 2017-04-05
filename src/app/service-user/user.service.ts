@@ -21,17 +21,18 @@ export class UserService {
 
     // load user from storage if available.
 
-    console.log(`Attempting to read Current User from Storage`);
-    var userData:string = window.localStorage.getItem("CURRENT_USER");
-    if (userData)
-    {
+    //console.log(`Attempting to read Current User from Storage`);
+    //var userData:string = window.localStorage.getItem("CURRENT_USER");
+
+    /*if (userData) {
       var user:User = JSON.parse(window.localStorage.getItem("CURRENT_USER_TOKEN"));
 
       this.currentUser  = new BehaviorSubject<User>(user);
     } else {
       this.currentUser  = new BehaviorSubject<User>(null);
-    }
+    }*/
 
+    this.currentUser  = new BehaviorSubject<User>(null);
   }
 
   loginUser (email:string, password:string){
@@ -44,12 +45,18 @@ export class UserService {
 
                           window.localStorage.setItem("CURRENT_USER_TOKEN", msg.token)
 
+                          console.log(`Received user:`, msg.payload);
+                          this.currentUser.next(msg.payload)
+
                         }
-                        //var user:User = result.json();
-                        //this.currentUser.next(user)
 
                       })
+    
+  }
 
+  getUserData () {
+
+    //return this.http.get(ServerLib.getServerAddress("/users/login')).map(this.extractData)
 
   }
 

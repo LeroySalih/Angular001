@@ -3,9 +3,15 @@ var express = require('express');
 var router = express.Router();
 const assert = require('assert');
 var ObjectId = require ('mongodb').ObjectID
+var verifyJwt = require('../verifyJwt')
+
+
+
+
+router.use (verifyJwt) 
 
 /* GET users listing. */
-router.get('/', function(req, res, next) {
+router.get('/',  function(req, res, next) {
 
   try{
     // Check db is initialised
@@ -32,7 +38,7 @@ router.get('/', function(req, res, next) {
 
 });
 
-router.get('/:schoolId', function (req, res, next){
+router.get('/:schoolId',  function (req, res, next){
 
 
   try {
@@ -63,7 +69,7 @@ router.get('/:schoolId', function (req, res, next){
 })
 
 // Create New school
-router.post('/', function (req, res, next){
+router.post('/',  function (req, res, next){
 
     var name = req.body.name || "not specified";
 
@@ -80,7 +86,7 @@ router.post('/', function (req, res, next){
 });
 
 // Update School Field
-router.post('/:schoolId', function (req, res, next){
+router.post('/:schoolId',  function (req, res, next){
     // Check db is initialised
     var db = req.app.get('db')
     var schoolId = req.params.schoolId
@@ -95,7 +101,7 @@ router.post('/:schoolId', function (req, res, next){
 });
 
 // Remove a School
-router.delete('/:schoolId', function (req, res, next){
+router.delete('/:schoolId',  function (req, res, next){
     // Check db is initialised
     var db = req.app.get('db')
     var schoolId = req.params.schoolId
@@ -106,7 +112,7 @@ router.delete('/:schoolId', function (req, res, next){
         })
 });
 
-router.get('/classes/:classId', function(req, res, next){
+router.get('/classes/:classId',  function(req, res, next){
 
     var db = req.app.get('db');
 
@@ -130,7 +136,7 @@ router.get('/classes/:classId', function(req, res, next){
 
 } );
 
-router.get('/classes/:classId/pupils', function(req, res, next){
+router.get('/classes/:classId/pupils',  function(req, res, next){
 
     var db = req.app.get('db');
 
@@ -148,7 +154,7 @@ router.get('/classes/:classId/pupils', function(req, res, next){
 
 } );
 
-router.delete ('/', function (req, res, next){
+router.delete ('/',  function (req, res, next){
 
     // Check db is initialised
     var db = req.app.get('db')

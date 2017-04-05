@@ -16,15 +16,27 @@ export class PupilService {
     this.pupilUrl = ServerLib.getServerAddress("/pupils")
   }
 
-  getPupils(classId:string){
-    return this.http.get(`${this.pupilUrl}/${classId}`).map(this.extractData)
+  getJWTOptions (){
+
+    let token = window.localStorage.getItem('CURRENT_USER_TOKEN');
+    let headers = new Headers({ 'x-access-token': token });
+    let options = new RequestOptions({ headers: headers });
+
+    return options;
   }
+
+  getPupils(classId:string){
+    return this.http.get(`${this.pupilUrl}/${classId}`, this.getJWTOptions()).map(this.extractData)
+  }
+  
 
   saveScore(score:Score){
     var url = `${this.pupilUrl}/pupil/${score.pupilId}/score`;
     console.log(url);
 
-    let headers = new Headers({ 'Content-Type': 'application/json' });
+    let token = window.localStorage.getItem('CURRENT_USER_TOKEN');
+
+    let headers = new Headers({ 'Content-Type': 'application/json', 'x-access-token' : token });
     let options = new RequestOptions({ headers: headers });
 
     score.level = Number(score.level);

@@ -66,6 +66,7 @@ router.post ('/login',  function (req, res, next){
 
         res.json({
             success : true,
+            payload : result,
             token : token
           });
       })
